@@ -21,9 +21,9 @@ After downloading, cd into the main source directly, then:
 > cd build  
 > cmake ../  
 
-When building on Perlmutter, make sure you are on a GPU node when doing the compilation. Compiling and running your code on the Perlmutter Login nodes is not recommended.  The simplest way to do this is
-grab an interactive GPU node by running the below command after logging into Perlmutter:  
-> salloc --nodes=1 --qos=interactive --time=00:15:00 --constraint=gpu --account=m3930
+When building on Perlmutter, make sure you are on a CPU node when doing the compilation. Compiling and running your code on the Perlmutter Login nodes is not recommended.  The simplest way to do this is
+grab an interactive CPU node by running the below command after logging into Perlmutter:  
+> salloc --nodes=1 --qos=interactive --time=00:15:00 --constraint=cpu --account=m3930
 
 <br></br>
 
