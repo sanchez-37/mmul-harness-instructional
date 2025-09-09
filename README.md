@@ -8,7 +8,7 @@ The main code is benchmark.cpp, which sets up the problem, iterates over problem
 (and block) sizes, sets up the matrices, executes the mmul call, and tests the
 result for accuracy by comparing your result against a reference implementation (CBLAS).
 
-Note that cmake needs to be able to find the CBLAS package. For CSC 746 Fall 2021,
+Note that cmake needs to be able to find the CBLAS package. For CSC 746 Fall 2025,
 this condition is true on Perlmutter@NERSC and on the class VM. It is also true for some
 other platforms, but you are on your own if using a platform other than Perlmutter@NERSC
 or the class VM.
