@@ -53,7 +53,7 @@ int main(int argc, char** argv)
 {
     std::cout << "Description:\t" << dgemm_desc << std::endl << std::endl;
 
-    std::cout << std::fixed << std::setprecision(2);
+    std::cout << std::fixed << std::setprecision(8);
 
     // 9/14/2024: run the 1st problem size twice: the first execution
     // "conditions" BLAS (eg, dll loading), so ignore the runtime from
@@ -95,6 +95,7 @@ int main(int argc, char** argv)
            memcpy((void *)Ccopy, (const void *)C, sizeof(double)*n*n);
 
            // insert timer code here
+           std::chrono::time_point<std::chrono::high_resolution_clock> start_time = std::chrono::high_resolution_clock::now();
 
 #ifdef BLOCKED
            square_dgemm_blocked(n, b, A, B, C); 
@@ -103,6 +104,9 @@ int main(int argc, char** argv)
 #endif
 
            // insert timer code here
+           std::chrono::time_point<std::chrono::high_resolution_clock> end_time = std::chrono::high_resolution_clock::now();
+           std::chrono::duration<double> elapsed = end_time - start_time;
+           std::cout << "Elapsed time: " << elapsed.count() << " " << std::endl;
 
            reference_dgemm(n, 1.0 , Acopy, Bcopy, Ccopy);
 
