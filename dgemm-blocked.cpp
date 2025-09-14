@@ -27,6 +27,7 @@ void copy_to_mem(double* Arr_mem, double* Arr_block, int dest, int n, int block_
 void square_dgemm_blocked(int n, int block_size, double* A, double* B, double* C) 
 {
    int N_b = n/block_size;
+   int n_b = block_size * block_size;
    int size = block_size * block_size;
    double A_b[size], B_b[size], C_b[size];
    bool copied;
@@ -46,8 +47,10 @@ void square_dgemm_blocked(int n, int block_size, double* A, double* B, double* C
                copy_to_block(B, B_b, n * k + j, n, block_size);
                copied = true;
             }
-
-            C_b[n * i + j] += A_b[n * i + k] + B_b[n * k + j]
+            for(int i_b = 0; i_b < block_size; ++i_b)
+               for(int j_b = 0; j_b < block_size; ++j_b)
+                  for(int k_b = 0; k_b < block_size, ++k_b)
+                     C_b[n_b * i_b + j_b] += A_b[n_b * i_b + k_b] + B_b[n_b * k_b + j_b]
          }
          copy_to_mem(C_b, C, idx, n, block_size);
       }
